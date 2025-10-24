@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
@@ -11,9 +12,9 @@ pipeline {
 
         stage('Docker Login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                    bat "docker login -u %USER% -p %PASS%"
-                }
+                echo "Logging in to Docker Hub..."
+                // Direct login (no Jenkins credentials)
+                bat 'docker login -u shivanij454 -p Logan@2020'
             }
         }
 
@@ -22,7 +23,6 @@ pipeline {
                 echo "Pushing Docker Image to Docker Hub..."
                 bat "docker tag kubedemoapp:v1 shivanij454/case-study:latest"
                 bat "docker push shivanij454/case-study:latest"
-
             }
         }
 
