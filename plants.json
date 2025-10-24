@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Microsoft",
+        "frequency": 2,
+        "notes": "hello",
+        "last_watered": "2025-10-22"
+    },
+    {
+        "id": 2,
+        "name": "Microsoft",
+        "frequency": 2,
+        "notes": "mmm",
+        "last_watered": "2025-10-22"
+    }
+]
