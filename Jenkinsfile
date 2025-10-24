@@ -3,10 +3,17 @@ pipeline {
 
     stages {
 
+        stage('Checkout Code') {
+            steps {
+                echo "Checking out code from GitHub..."
+                git branch: 'main', url: 'https://github.com/JShivani04/1219.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-                bat 'docker build -t kubedemoapp:v1 C:\\Users\\SHIVANI\\Desktop\\case_study_1219'
+                bat 'docker build -t kubedemoapp:v1 .'
             }
         }
 
@@ -28,8 +35,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Deploying to Kubernetes..."
-                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f C:\\Users\\SHIVANI\\Desktop\\case_study_1219\\deployment.yaml --validate=false'
-                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f C:\\Users\\SHIVANI\\Desktop\\case_study_1219\\service.yaml'
+                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f deployment.yaml --validate=false'
+                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f service.yaml'
             }
         }
     }
