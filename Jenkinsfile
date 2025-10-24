@@ -6,14 +6,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-                bat "docker build -t kubedemoapp:v1 ."
+                bat 'docker build -t kubedemoapp:v1 C:\\Users\\SHIVANI\\Desktop\\case_study_1219'
             }
         }
 
         stage('Docker Login') {
             steps {
                 echo "Logging in to Docker Hub..."
-                // Direct login (no Jenkins credentials)
                 bat 'docker login -u shivanij454 -p Logan@2020'
             }
         }
@@ -29,8 +28,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Deploying to Kubernetes..."
-                bat 'kubectl apply -f deployment.yaml --validate=false'
-                bat 'kubectl apply -f service.yaml'
+                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f C:\\Users\\SHIVANI\\Desktop\\case_study_1219\\deployment.yaml --validate=false'
+                bat 'kubectl --kubeconfig=C:\\Users\\SHIVANI\\.kube\\config apply -f C:\\Users\\SHIVANI\\Desktop\\case_study_1219\\service.yaml'
             }
         }
     }
